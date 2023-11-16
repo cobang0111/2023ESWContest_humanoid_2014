@@ -80,6 +80,8 @@
 
 <p align = "center"> ESW_sg_v231107.py </p>
 
+파일 실행 및 저장된 HSV 데이터 로드드
+
 ```python
 # -*- coding: utf-8 -*-
 
@@ -161,6 +163,12 @@ Config_File_Name ='Cts5_v1.dat'
 
 #---------------------------------------------------------
 
+```
+
+Code to Real Operation 상수 및 헤드 각도를 기록하는 글로벌 변수
+
+```python
+
 # CONSTANT
 
 SIZE_CONSTANT = 5.0
@@ -174,6 +182,12 @@ cur_theta = 30
 cur_theta_index = 3
 head_serial = [101, 102 ,103, 104, 105, 106, 107, 108, 109, 110, 112, 113, 114, 115, 116, 117, 118]
 
+
+```
+
+기본 함수
+
+```python
 
 #-----------------------------------------------
 
@@ -440,6 +454,11 @@ def hsv_setting_read():
     #    print("hsv_setting_read Error~")
     #    return 0
 
+```
+
+추가 정의 함수
+
+```python
     
 # ******************** sg CUSTOMIZE FUNCTION *********************
 
@@ -544,6 +563,15 @@ def obj_y_centering(serial_port, obj_y_center, head_flag):
         head_flag = 1 # Mean head degree satisfied
 
     return head_flag
+
+
+```
+
+
+main Function
+
+
+```python
 
 # **************************************************
 
@@ -700,6 +728,12 @@ if __name__ == '__main__':
     View_select = 0
     msg_one_view = 0
 
+```
+
+Main Operation Loop 
+
+```python
+
     # -------- Main Loop Start --------
 
     detect_count_ball = 0 # Ball frame count 변수
@@ -784,6 +818,13 @@ if __name__ == '__main__':
         '''
         center = None
 
+```
+
+
+시야 내 공 감지 Counting
+
+```python
+
         # *********************  Ball detected  **************************
         if len(cnts0) > 0:
             c0 = max(cnts0, key=cv2.contourArea)
@@ -803,6 +844,12 @@ if __name__ == '__main__':
             else:
                 TX_data(serial_port, 1) # turn left shortly
                 time.sleep(2)
+
+```
+
+시야 내 깃발 감지 counting
+
+```python
 
         # *********************  Flag detected  **************************
         if len(cnts1) > 0:
@@ -824,6 +871,13 @@ if __name__ == '__main__':
                 TX_data(serial_port, 1) # turn left shortly
                 time.sleep(2)
 
+```
+
+시야 내 detecting object 존재하지 않음
+
+```python
+
+
         # *********************  nothing detected  **************************
         if len(cnts0) <= 0 and len(cnts1) <= 0:
             x = 0
@@ -837,7 +891,11 @@ if __name__ == '__main__':
             Angle = 0
             non_detect_count += 1
 
+```
 
+object detection 기반 조건문 수행
+
+```python
 
         # *********************  로봇 동작 조건 분기 시작  **************************
 
@@ -891,6 +949,10 @@ if __name__ == '__main__':
                 TX_data(serial_port, 25)
                 time.sleep(3)
 
+```
+
+
+```python
 
         # ********** Action : 로봇이 골프공을 올바른 방향으로 타격하기 위해 회전  ***********
         # Shot possible but turn is needed (조건 : 공 감지, shot flag -> 결과 : 왼쪽으로 이동 후 회전 )
@@ -940,6 +1002,10 @@ if __name__ == '__main__':
                 time.sleep(2)
                 shot_turn_flag = 1 # shot_turn_flag is here
 
+```
+
+
+```python
 
         # ******* Action : 로봇과 공이 멀 때, 로봇이 골프공을 타격하기 좋은 근처로 이동  ********
         # Case : ball is far from robot (조건 : 공 감지, far_flag -> 결과 : 공 위치 근처로 이동)
@@ -1030,6 +1096,12 @@ if __name__ == '__main__':
                 cur_theta_index = 11
                 TX_data(serial_port, head_serial[cur_theta_index]) 
                 time.sleep(2)
+
+
+```
+
+
+```python
 
         # *********** Action : 공과 깃발이 일렬 선상에 위치하도록 맞춤(1)  *************
         # Both detected during 20 frame but flag and ball are not in same line
@@ -1127,6 +1199,11 @@ if __name__ == '__main__':
                     flag_flag = 0
                     ball_flag = 0
 
+```
+
+
+```python
+
         # ********** Action : 공과 깃발이 일렬 선상에 위치하도록 맞춤(2)  *************
         # Ball detected during 50 frame but flag and ball are not in same line
         # 조건 : 공만 감지, 거리가 가깝지만 일렬 아닌 경우 -> 결과 : 공과 깃발을 번갈아 가며 확인하여 일렬 정렬 시도
@@ -1217,6 +1294,11 @@ if __name__ == '__main__':
                     continue
 
 
+```
+
+
+```python
+
         # ********** Action : 공이 감지되고 일렬 정렬된 상태에서는 공을 기준으로 로봇 방향을 맞춤  *************
         # Case : ball is detected and ball and ball and flag are in same line but robot direction must be changed
         # 조건 : 공 감지, 일렬 정렬, ball x not in center -> 결과 : x centering
@@ -1242,6 +1324,11 @@ if __name__ == '__main__':
                 time.sleep(2)
             
             robot_condition = obj_x_centering(serial_port, ball_x_center, robot_condition, 0)
+
+```
+
+
+```python
 
 
         # ********** Action : 공이 감지되고 일렬 정렬된 상태에서 거리 계산 후 보행 시작  *************
@@ -1290,8 +1377,10 @@ if __name__ == '__main__':
                 ball_theta = 0
                 ball_theta_index = -1
 
-        
+```
 
+
+```python
         # ********** Action : 공이 처음 감지된 경우 깃발을 먼저 찾고, 이미 깃발 위치가 존재하는 경우 공 위치로 이동 *************
         # only ball detected and upper condition is not true
         # 조건 : 위 조건문들을 통과하지 않고 공만 감지된 경우 -> 결과 : flag를 찾도록 고개를 들어올리거나, 공 위치로 이동
@@ -1460,7 +1549,10 @@ if __name__ == '__main__':
                         cur_theta_index = 11
                         TX_data(serial_port, head_serial[cur_theta_index])
                         time.sleep(2)
+```
 
+
+```python
 
         # ********** Action : shot turn 상태에서 깃발 위치를 기준으로 shot 방향을 정확하게 맞춤 *************
         # flag detected and shot_turn_flag, then control the robot direction 
@@ -1552,7 +1644,11 @@ if __name__ == '__main__':
                 TX_data(serial_port, head_serial[cur_theta_index])
                 time.sleep(2)
                 flag_y_center = y1 + h1/2 # flag y 좌표 저장
-                
+
+```
+
+
+```python            
 
         # ********** Action : 깃발이 처음 관측되었을 때 정보를 저장하고 다시 공을 찾는다. *************
         # flag detected during sorting process, then head down to ball and compare with flag coordinate
@@ -1604,6 +1700,10 @@ if __name__ == '__main__':
                 time.sleep(3)
                 print("CUR_HEAD_DIR = ", head_dir)
 
+```
+
+
+```python
 
         # ********** Action : shot_turn_flag 상태에서 아무것도 관측되지 않을 때 원래 상태로 돌린다. *************
         # nothing detected when shot_turn_flag = 1, then change the head direction 
@@ -1622,6 +1722,10 @@ if __name__ == '__main__':
             TX_data(serial_port, head_serial[cur_theta_index])
             time.sleep(2)
 
+```
+
+
+```python
 
         # ********** Action : 아무것도 관측되지 않을 때 object를 탐색한다 *************
         # nothing detected, then change the head direction 
@@ -1659,6 +1763,12 @@ if __name__ == '__main__':
                 time.sleep(2)
                 print("CUR_HEAD_DIR = ", head_dir)
         
+
+```
+
+조건 분기 종료, frame check & key interrupt check
+
+```python
 
 
         # ********* 로봇 동작 조건 분기 종료 *************
