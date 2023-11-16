@@ -921,7 +921,7 @@ if __name__ == '__main__':
 
 <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/1_shot_turn.png"></p>
  
-<br/>
+
 ```python
 
         # *********************  로봇 동작 조건 분기 시작  **************************
