@@ -1,4 +1,4 @@
-## <div align="center">2023 제 21회 임베디드 소프트웨어 경진대회 지능형 휴머노이드 부문 </div>
+## <div align="center">2023 제 21회 임베디드 소프트웨어 경진대회 - 지능형 휴머노이드 </div>
 🚀 지능형 휴머노이드 로봇을 이용한 로봇 골프 경기 수행
 
 ## <div align="center">Team 서계</div>
@@ -17,7 +17,7 @@
 [Youtube_link](https://www.youtube.com/watch?si=oTYd6pSQUsP_0D2D&v=IUE--1FHvtU&feature=youtu.be)
 
 
-<p align="center"><img width="800" src=""></p>
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/youtube_main.png"></p>
 
 
 ## <div align="center">Competition Summary</div>
@@ -34,6 +34,47 @@
   
 - PAR 4
   <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/par4.png"></p>
+
+- DETAIL
+  <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/par_detail.png"></p>
+
+
+🚀 경기 규칙
+- 팀별 2번의 경기(파3+파4)를 진행하여, 가장 낮은 타수의 경기를 팀 점수로 한다.
+
+- 파3, 파4 각각 5분으로 총 10분으로 경기 시간은 한정된다.
+
+- 세리머니 여부는 파3, 파4 경기마다 확인된다. (세리머니 동작 O : -1 , X : 0, 잘못된 세리머니 : +1 )
+
+- 골프공을 티샷 3곳 중 임의에 위치에 놓는다.
+
+- 로봇을 차렷 상태로, 시작 위치에 놓고 경기를 시작한다.
+
+- 경기 시작 후 참가자는 더 이상 로봇을 만질 수 없음.
+
+- 로봇이 동작할 때부터 시간 측정 시작
+
+- 시작 위치는 매 경기 달라질 수 있음.
+
+- 첫 티샷이 밖으로 나가는 경우 OB로, 해저드 티에 운영자가 공을 갖다 놓고, 2타가 추가된다.
+
+- 세컨드 샷 이후 밖으로 나가는 것은 해저드로, 로봇 앞으로 운영자가 공을 갖다 놓고, 1타가 추가된다.
+
+- 로봇이 밖으로 이탈하는 경우, 해당 홀 양파+1타를 점수로 받고 해당 홀을 종료한다. (예: 파3의 경우 7점)
+
+- 공을 칠 수 없다고 판단되는 경우, 참가자는 +1타를 받고, 공의 위치를 이동시킬 수 있다. (운영자가 공을 옮긴다.)
+
+- 경기장 진동 및 기타 요인으로 공이 이동하는 것은 인정된다. 하지만 홀인의 경우 공의 움직임은 무효 처리되어, 원래의 위치로 공을 이동시킨다.
+
+- 경기장의 기울기는 MAX ±5도 미만의 오차를 가질 수 있다.
+  <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/par_degree.png"></p>
+  
+- 홀 컵의 깊이는 약 12mm로, 공이 들어갔다 나오는 것은 인정되지 않는다.
+
+- 중도 포기의 경우 양파 +2타로 최종 기록된다.(예: 파3의 경우 8점)
+
+
+
 
 
 🚀 Take Image using WebCam - terminal (fswebcam)
