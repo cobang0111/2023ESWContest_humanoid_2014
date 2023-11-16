@@ -899,10 +899,7 @@ Main Operation Loop
 ```
 
 
-object detection 기반 조건문 수행
-
-
-
+object detection 기반 조건문 수행 </br>
 
 공 감지 & shot_flag = 1 & shot_turn_flag = 1
 
