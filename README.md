@@ -1,5 +1,6 @@
 ## <div align="center">2023 제 21회 임베디드 소프트웨어 경진대회 - 지능형 휴머노이드 </div>
 🚀 지능형 휴머노이드 로봇을 이용한 로봇 골프 경기 수행
+<br/>
 
 ## <div align="center">Team 서계</div>
 🌟 Team Leader  이창재 (서강대학교 기계공학과 19)
@@ -9,6 +10,7 @@
 🌟 Team member 김기훈 (서강대학교 기계공학과 / 컴퓨터공학과 19)
 
 🌟 Team member 이도헌 (서강대학교 기계공학과 19)
+<br/>
 
 ## <div align="center">Video</div>
 
@@ -26,7 +28,7 @@
 
 <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/MF-RAPI4.png"></p>
 
-
+<br/>
 🚀 경기장
 
 - PAR 3
@@ -38,7 +40,7 @@
 - DETAIL
   <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/par_detail.png"></p>
 
-
+<br/>
 🚀 경기 규칙
 - 팀별 2번의 경기(파3+파4)를 진행하여, 가장 낮은 타수의 경기를 팀 점수로 한다.
 
@@ -76,14 +78,15 @@
 
 ## <div align="center">Code</div>
 
-<br/>
+
 🚀 Code - Python3 Code
 
 <p align = "center"> ESW_sg_v231107.py </p>
 
 
 <br/>  
-🚀 파일 실행 및 저장된 HSV 데이터 로드
+🚀 파일 실행 및 저장된 HSV 데이터 로드   
+
 
 
  
@@ -170,7 +173,8 @@ Config_File_Name ='Cts5_v1.dat'
 
 ```
 <br/>
-🚀 Code to Real Operation 상수 및 헤드 각도를 기록하는 글로벌 변수
+🚀 Code to Real Operation 상수 및 헤드 각도를 기록하는 글로벌 변수   
+
 
 ```python
 
@@ -190,7 +194,8 @@ head_serial = [101, 102 ,103, 104, 105, 106, 107, 108, 109, 110, 112, 113, 114, 
 
 ```
 <br/>
-🚀 기본 함수
+🚀 기본 함수   
+
 
 ```python
 
@@ -461,7 +466,8 @@ def hsv_setting_read():
 
 ```
  <br/>
-🚀 추가 정의 함수
+🚀 추가 정의 함수   
+
  
 
 ```python
@@ -574,7 +580,8 @@ def obj_y_centering(serial_port, obj_y_center, head_flag):
 ```
 
 <br/>
-🚀 main Function
+🚀 main Function   
+
 
 
 ```python
@@ -736,7 +743,8 @@ if __name__ == '__main__':
 
 ```
 <br/>
-🚀 Main Operation Loop   
+🚀 Main Operation Loop      
+
 
 
 ```python
@@ -828,7 +836,8 @@ if __name__ == '__main__':
 ```
 
 <br/>
-🚀 시야 내 공 감지 Counting  
+🚀 시야 내 공 감지 Counting     
+
 
 
 
@@ -857,7 +866,8 @@ if __name__ == '__main__':
 ```
 
 <br/>
-🚀 시야 내 깃발 감지 counting  
+🚀 시야 내 깃발 감지 counting     
+
 
 
 
@@ -885,7 +895,8 @@ if __name__ == '__main__':
 
 ```
 <br/>
-🚀 시야 내 detecting object 존재하지 않음  
+🚀 시야 내 detecting object 존재하지 않음     
+
 
 
 ```python
@@ -907,12 +918,14 @@ if __name__ == '__main__':
 ```
 
 <br/>
-🚀 object detection 기반 조건문 수행  
+🚀 object detection 기반 조건문 수행     
+<br/>
 
 - 공 감지 & shot_flag = 1 & shot_turn_flag = 1   
 
 <br/>
 공의 위치를 화면 Width 의 3/4에 도달할 때 까지 왼쪽으로 움직이고, 도달 시 공프공을 타격한다.   
+
 
 타격 후에 모든 변수를 초기화 하고 공을 타격한 방향으로 몸을 돌린다.   
 
@@ -979,17 +992,20 @@ if __name__ == '__main__':
 ```
 <br/>
 - 공 감지 & shot_flag = 1
+  
 
 <br/>
-로봇과 공과 홀이 일렬 정렬된 상태에서는 shot_flag = 1이 설정된다.   
+로봇과 공과 홀이 일렬 정렬된 상태에서는 shot_flag = 1이 설정된다.     
 
-이에 따라,공 위치가 화면 Width 의 95%에 도달할 때 까지 움직이고   
+
+이에 따라, 공 위치가 화면 Width 의 95%에 도달할 때 까지 움직이고   
 
 왼쪽으로 4보 추가 이동한 후 우측으로 90도 회전한다.   
 
 그리고 깃발 방향을 바라보도록 고개를 왼쪽 상단으로 돌린다.   
 
 상황이 발생하는 예시는 다음 그림과 같다.   
+
 
 <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/2_shot.png"></p>
 
@@ -1049,7 +1065,10 @@ if __name__ == '__main__':
 
 - 공 감지 & far_flag = 1
 <br/>
-far_flag 가 활성화 된 경우는 깃발과 공 위치를 분석하였을 때 로봇이 꽤 먼 거리를 가야할 때이다.    
+
+far_flag 가 활성화 된 경우는 깃발과 공 위치를 분석하였을 때 로봇이 꽤 먼 거리를 가야할 때이다.
+
+     
 
 이 때 이동 방향을 미리 분석한 상대적 위치로 공의 좌, 우측편을 direction_flag 로 정해두고   
 
@@ -1157,13 +1176,10 @@ far_flag 가 활성화 된 경우는 깃발과 공 위치를 분석하였을 때
 
 - 공 감지 & 깃발 감지 & same_flag = 0
 <br/>
-same_flag = 0 인 경우는 아직 공과 깃발, 로봇이 일렬 정렬 되지 않은 경우이다.    
+same_flag = 0 인 경우는 아직 공과 깃발, 로봇이 일렬 정렬 되지 않은 경우이다.
+   
+공과 로봇 사이의 거리가 멀거나, 깃발과 공 사이 각도 차이가 클 경우   
 
-
-
-    
-<br/>
-공과 로봇 사이의 거리가 멀거나, 깃발과 공 사이 각도 차이가 클 경우
 
 far_flag = 1로 설정하고, 공과 홀의 상대적인 위치를 기록하여 반환하며,    
 
@@ -1174,8 +1190,10 @@ far_flag = 1로 설정하고, 공과 홀의 상대적인 위치를 기록하여 
 <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/4_not_same_1.png"></p>
 
 <br/>    
-공과 로봇 사이의 거리가 멀지 않을 경우   
+공과 로봇 사이의 거리가 멀지 않을 경우    
 
+
+   
 로봇의 위치를 좌우로 적절히 옮겨 일렬 정렬 과정을 수행하며,    
 
 정렬이 완료되면 same_flag = 1을 반환한다.   
@@ -1284,11 +1302,14 @@ far_flag = 1로 설정하고, 공과 홀의 상대적인 위치를 기록하여 
                     ball_flag = 0
 
 ```
+<br/>
 
 - 공 감지 & 헤드 각도가 60도 이상 & same_flag = 0
   
 <br/>
 공만 감지되고 헤드 각도가 60도 이상으로 공이 가까이 있을 때,    
+
+   
 
 공과 깃발을 번갈아가며 체크하여 일렬 정렬이 될 때 까지 좌우로 이동한다.    
 
@@ -1397,6 +1418,8 @@ far_flag = 1로 설정하고, 공과 홀의 상대적인 위치를 기록하여 
   
 <br/>
 공이 감지되고 일렬 정렬된 상태에서 robot 방향이 공 중심과 맞지 않을 경우 이를 맞춘다.    
+
+   
 
 공과의 거리가 너무 가까울 경우 뒤로 한 걸음 보행한다.   
 
@@ -1508,8 +1531,10 @@ far_flag = 1로 설정하고, 공과 홀의 상대적인 위치를 기록하여 
 - 공 감지
   
 <br/>
-공이 최초로 감지된 경우에는 flag 를 찾아 이동 방향의 기준을 설정할 수 있도록 한다.    
+공이 최초로 감지된 경우에는 flag 를 찾아 이동 방향의 기준을 설정할 수 있도록 한다.       
 
+
+   
 예시 상황은 다음과 같다.   
 
 <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/8_flag_not_detected.png"></p>
@@ -1941,6 +1966,7 @@ shot_turn_flag 상태에서 아무것도 감지되지 않을 경우 다시 고�
             time.sleep(2)
 
 ```
+<br/>
 
 - 아무것도 감지되지 않음
 
@@ -1996,8 +2022,10 @@ shot_turn_flag 상태에서 아무것도 감지되지 않을 경우 다시 고�
         
 
 ```
+<br/>
 
-조건 분기 종료, frame check & key interrupt check
+🚀 조건 분기 종료, frame check & key interrupt check
+
 
 ```python
 
