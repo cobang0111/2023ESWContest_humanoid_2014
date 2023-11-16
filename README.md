@@ -898,10 +898,11 @@ Main Operation Loop
 
 ```
 
+<br/>
+object detection 기반 조건문 수행 
 
-object detection 기반 조건문 수행 </br>
+공 감지 & shot_flag = 1 & shot_turn_flag = 1   
 
-공 감지 & shot_flag = 1 & shot_turn_flag = 1
 
 공의 위치를 화면 Width 의 3/4에 도달할 때 까지 왼쪽으로 움직이고, 도달 시 공프공을 타격한다. 
 타격 후에 모든 변수를 초기화 하고 공을 타격한 방향으로 몸을돌린다. 
