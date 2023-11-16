@@ -2,7 +2,7 @@
 🚀 지능형 휴머노이드 로봇을 이용한 로봇 골프 경기 수행
 
 ## <div align="center">Team 서계</div>
-🌟 Team Leader 이창재 (서강대학교 기계공학과 19)
+🌟 Team Leader  이창재 (서강대학교 기계공학과 19)
 
 🌟 Team member 강정훈 (서강대학교 기계공학과 19)
 
@@ -80,8 +80,12 @@
 
 <p align = "center"> ESW_sg_v231107.py </p>
 
+
+  
 파일 실행 및 저장된 HSV 데이터 로드드
 
+
+ 
 ```python
 # -*- coding: utf-8 -*-
 
@@ -455,8 +459,9 @@ def hsv_setting_read():
     #    return 0
 
 ```
-
+ 
 추가 정의 함수
+ 
 
 ```python
     
@@ -894,6 +899,16 @@ Main Operation Loop
 ```
 
 object detection 기반 조건문 수행
+
+
+공 감지 & shot_flag = 1 & shot_turn_flag = 1
+
+공의 위치를 화면 Width 의 3/4에 도달할 때 까지 왼쪽으로 움직이고, 도달 시 공프공을 타격한다. 
+타격 후에 모든 변수를 초기화 하고 공을 타격한 방향으로 몸을돌린다. 
+상황에 대한 예시는 다음 그림과 같다.
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/1_shot_turn.png"></p>
+ 
 
 ```python
 
