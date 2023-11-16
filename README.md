@@ -76,13 +76,13 @@
 
 ## <div align="center">Code</div>
 
-🚀 Code - Python3 Code (r.py)
+🚀 Code - Python3 Code
 
 <p align = "center"> ESW_sg_v231107.py </p>
 
 
   
-파일 실행 및 저장된 HSV 데이터 로드드
+🚀 파일 실행 및 저장된 HSV 데이터 로드
 
 
  
@@ -169,7 +169,7 @@ Config_File_Name ='Cts5_v1.dat'
 
 ```
 
-Code to Real Operation 상수 및 헤드 각도를 기록하는 글로벌 변수
+🚀 Code to Real Operation 상수 및 헤드 각도를 기록하는 글로벌 변수
 
 ```python
 
@@ -189,7 +189,7 @@ head_serial = [101, 102 ,103, 104, 105, 106, 107, 108, 109, 110, 112, 113, 114, 
 
 ```
 
-기본 함수
+🚀 기본 함수
 
 ```python
 
@@ -460,7 +460,7 @@ def hsv_setting_read():
 
 ```
  
-추가 정의 함수
+🚀 추가 정의 함수
  
 
 ```python
@@ -573,7 +573,7 @@ def obj_y_centering(serial_port, obj_y_center, head_flag):
 ```
 
 
-main Function
+🚀 main Function
 
 
 ```python
@@ -735,7 +735,8 @@ if __name__ == '__main__':
 
 ```
 
-Main Operation Loop 
+🚀 Main Operation Loop   
+
 
 ```python
 
@@ -826,7 +827,9 @@ Main Operation Loop
 ```
 
 
-시야 내 공 감지 Counting
+🚀 시야 내 공 감지 Counting  
+
+
 
 ```python
 
@@ -852,7 +855,10 @@ Main Operation Loop
 
 ```
 
-시야 내 깃발 감지 counting
+
+🚀 시야 내 깃발 감지 counting  
+
+
 
 ```python
 
@@ -878,7 +884,8 @@ Main Operation Loop
 
 ```
 
-시야 내 detecting object 존재하지 않음
+🚀 시야 내 detecting object 존재하지 않음  
+
 
 ```python
 
@@ -899,20 +906,18 @@ Main Operation Loop
 ```
 
 <br/>
-object detection 기반 조건문 수행  
+🚀 object detection 기반 조건문 수행  
 
   
-공 감지 & shot_flag = 1 & shot_turn_flag = 1   
+- 공 감지 & shot_flag = 1 & shot_turn_flag = 1   
 
 
 공의 위치를 화면 Width 의 3/4에 도달할 때 까지 왼쪽으로 움직이고, 도달 시 공프공을 타격한다.   
 
-타격 후에 모든 변수를 초기화 하고 공을 타격한 방향으로 몸을돌린다.   
+타격 후에 모든 변수를 초기화 하고 공을 타격한 방향으로 몸을 돌린다.   
 
 상황에 대한 예시는 다음 그림과 같다.  
 
-
-  
 
 <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/1_shot_turn.png"></p>
  
@@ -972,6 +977,20 @@ object detection 기반 조건문 수행
                 time.sleep(3)
 
 ```
+<br/>
+- 공 감지 & shot_flag = 1
+  
+로봇과 공과 홀이 일렬 정렬된 상태에서는 shot_flag = 1이 설정된다.   
+
+이에 따라,공 위치가 화면 Width 의 95%에 도달할 때 까지 움직이고   
+
+왼쪽으로 4보 추가 이동한 후 우측으로 90도 회전한다.   
+
+그리고 깃발 방향을 바라보도록 고개를 왼쪽 상단으로 돌린다.   
+
+상황이 발생하는 예시는 다음 그림과 같다.   
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/2_shot.png"></p>
 
 
 ```python
@@ -1025,6 +1044,18 @@ object detection 기반 조건문 수행
                 shot_turn_flag = 1 # shot_turn_flag is here
 
 ```
+<br/>
+
+- 공 감지 & far_flag = 1
+
+far_flag 가 활성화 된 경우는 깃발과 공 위치를 분석하였을 때 로봇이 꽤 먼 거리를 가야할 때이다.    
+
+이 때 이동 방향을 미리 분석한 상대적 위치로 공의 좌, 우측편을 direction_flag 로 정해두고   
+
+이를 기반으로 결정된 이동 방향으로 이동한다.
+
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/3_far.png"></p>
 
 
 ```python
@@ -1121,6 +1152,35 @@ object detection 기반 조건문 수행
 
 
 ```
+<br/>
+- 공 감지 & 깃발 감지 & same_flag = 0
+
+same_flag = 0 인 경우는 아직 공과 깃발, 로봇이 일렬 정렬 되지 않은 경우이다.    
+
+
+
+    
+
+공과 로봇 사이의 거리가 멀거나, 깃발과 공 사이 각도 차이가 클 경우
+
+far_flag = 1로 설정하고, 공과 홀의 상대적인 위치를 기록하여 반환하며,    
+
+다음부터는 3번 조건 분기에 진입하게 된다.    
+
+이 조건에 진입하게 되는 예시 상황은 다음과 같다
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/4_not_same_1.png"></p>
+
+    
+공과 로봇 사이의 거리가 멀지 않을 경우   
+
+로봇의 위치를 좌우로 적절히 옮겨 일렬 정렬 과정을 수행하며,    
+
+정렬이 완료되면 same_flag = 1을 반환한다.   
+
+예시 상황은 다음과 같다.   
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/4_not_same_2.png"></p>
 
 
 ```python
@@ -1223,6 +1283,16 @@ object detection 기반 조건문 수행
 
 ```
 
+- 공 감지 & 헤드 각도가 60도 이상 & same_flag = 0
+
+공만 감지되고 헤드 각도가 60도 이상으로 공이 가까이 있을 때,    
+
+공과 깃발을 번갈아가며 체크하여 일렬 정렬이 될 때 까지 좌우로 이동한다.    
+
+예시 상황은 다음 그림과 같다.   
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/5_saming.png"></p>
+
 
 ```python
 
@@ -1318,6 +1388,15 @@ object detection 기반 조건문 수행
 
 ```
 
+<br/>
+
+- 공 감지 & same_flag = 1 & robot_condition = 0
+
+공이 감지되고 일렬 정렬된 상태에서 robot 방향이 공 중심과 맞지 않을 경우 이를 맞춘다.    
+
+공과의 거리가 너무 가까울 경우 뒤로 한 걸음 보행한다.   
+
+
 
 ```python
 
@@ -1348,6 +1427,24 @@ object detection 기반 조건문 수행
             robot_condition = obj_x_centering(serial_port, ball_x_center, robot_condition, 0)
 
 ```
+<br/>
+
+- 공 감지 & same_flag = 1 & robot_condition = 1 & shot_flag = 0
+  
+  
+공이 감지되고, X 중심이 일치하고, 일렬 정렬된 상태에서 공의 Y 좌표를 화면 중심에 맞춘다.    
+
+
+거리가 15cm 이내일 때는 즉시 shot_flag = 1 로 활성화하며,    
+
+
+거리가 멀 경우 해당 방향으로 이동거리에 비례하게 연속 직진 보행시킨다.    
+
+
+예시 상황은 다음 그림과 같다.
+
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/7_same.png"></p>
 
 
 ```python
@@ -1400,6 +1497,26 @@ object detection 기반 조건문 수행
                 ball_theta_index = -1
 
 ```
+<br/>
+
+- 공 감지
+
+공이 최초로 감지된 경우에는 flag 를 찾아 이동 방향의 기준을 설정할 수 있도록 한다.    
+
+예시 상황은 다음과 같다.   
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/8_flag_not_detected.png"></p>
+
+
+만약 공만 감지되고 flag가 이미 한 번이라도 탐지된 경우    
+
+flag 위치 정보를 이용하여 공을 기준으로 로봇이 이동해야하는 방향을 결정하고    
+
+해당 방향으로 휴머노이드 방향을 돌려 이동한다.    
+
+예시 상황은 다음과 같다
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/9_robot_direction_define.png"></p>
 
 
 ```python
@@ -1572,6 +1689,30 @@ object detection 기반 조건문 수행
                         TX_data(serial_port, head_serial[cur_theta_index])
                         time.sleep(2)
 ```
+<br/>
+
+- 깃발 감지 & shot_turn_flag = 1
+
+shot_flag 상태에서 고개를 돌려 깃발이 감지된 경우 깃발이 40cm 이상에 존재하면   
+
+이를 로봇의 방향을 깃발 중심이 화면 width 3/16 지점에 올 때 까지 돌려 shot 방향이 정확하도록 맞춘다.   
+
+그 외 거리에 대해서는 즉시 shot 을 수행한다.   
+
+거리가 약 40cm 이상인 경우 아래 예시와 같이 width의 3/16 지점에 올 경우 shot의 정확성이 높아진다.   
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/10_flag_shot_turn_flag.png"></p>
+
+
+   
+반면 40cm 이내 거리에 대해서는   
+ 
+shot을 위해서 각 상수를 이용하여 홀의 위치를 정밀 조절하는 것 보다   
+
+기존 방향에서 타격하는 것이 더욱 효과적이다.    
+
+홀이 가까우므로 비교적 덜 정확하게 타격하더라도 홀에 들어갈 가능성이 높기 때문이다.
+
 
 
 ```python
@@ -1610,6 +1751,18 @@ object detection 기반 조건문 수행
                 cur_theta_index = 11
                 TX_data(serial_port, head_serial[cur_theta_index])
                 time.sleep(2)
+```
+
+<br/>
+
+- 깃발 감지 & saming = 1
+  
+가까운 공을 일렬 정렬하는 saming process 중에는 깃발과 공을 번갈아가며 체크하며 깃발의 좌표를 저장한다.   
+
+깃발의 좌표가 확인되면 다시 원래대로 고개를 내려 공을 바라보도록 만든다   
+
+
+```python
 
         # ********** Action : 고개를 번갈아가며 공과 깃발이 위치를 일치 시킴 *************
         # flag detected during sorting process, then head down to ball and compare with flag coordinate
@@ -1669,6 +1822,22 @@ object detection 기반 조건문 수행
 
 ```
 
+<br/>
+
+- 깃발 감지
+
+깃발이 처음으로 감지된 경우 flag_detected = 1로 만들고 해당 깃발 방향 정보를 저장한다.   
+
+공을 관찰한 이후에 깃발을 찾고 있던 상황이라면,    
+
+공 정보를 이용하여 공을 보던 방향으로 돌아가고,    
+
+그렇지 않다면 헤드를 돌려 공을 찾는다.   
+
+예시 상황은 다음 그림과 같다.  
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/12_flag_only.png"></p>
+
 
 ```python            
 
@@ -1724,6 +1893,18 @@ object detection 기반 조건문 수행
 
 ```
 
+<br/>
+
+- 아무것도 감지되지 않음 & shot_turn_flag = 1
+  
+shot_turn_flag 상태에서 아무것도 감지되지 않을 경우 다시 고개를 공으로 돌려 타격하도록 한다.   
+
+이 상황은 hole이 공과 로봇으로부터 멀리 있는 경우이다.    
+
+예시 상황은 다음 그림과 같다.   
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/13_nothing_shot_turn_flag.png"></p>
+
 
 ```python
 
@@ -1745,6 +1926,17 @@ object detection 기반 조건문 수행
             time.sleep(2)
 
 ```
+
+- 아무것도 감지되지 않음
+
+아무것도 감지되지 않을 경우 object 를 detecting하기 위해 고개를 좌우로 돌리고    
+
+헤드를 아래로 내려가며 object를 detecting 할 수 있도록 한다.    
+
+예시 상황은 다음 그림과 같다.
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/14_nothing.png"></p>
+
 
 
 ```python
