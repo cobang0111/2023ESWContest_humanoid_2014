@@ -22,15 +22,18 @@
 
 ## <div align="center">Competition Summary</div>
 
-🚀 파 3
--
+🚀 휴머노이드 정보
+
+<p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/MF-RAPI4.png"></p>
 
 
-🚀 파 3
+🚀 경기장
 
-- [Our Roboflow Data Set](https://app.roboflow.com/sgme/classify-pet-and-can/4)
-
-- yolov5m 모델을 이용하여 [best.pt](https://drive.google.com/file/d/1xFNFxLWNwAg3CrGFe8cWR2mcu1oUs7Ly/view?usp=sharing)를 제작
+- PAR 3
+  <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/par3.png"></p>
+  
+- PAR 4
+  <p align="center"><img width="800" src="https://github.com/cobang0111/2023ESWContest_humanoid_2014/blob/main/img/par4.png"></p>
 
 
 🚀 Take Image using WebCam - terminal (fswebcam)
